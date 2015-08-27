@@ -5,86 +5,153 @@
 }
 
 <h2>DevOps Entry Criteria:</h2><br />
-
+@using (Html.BeginForm())
+{
 <table class="table">
 
     <tr>
-        <td><label class="form-control-static"> What is the Application code & title:</label></td>
-        <td><input type="text" class="form-control" /></td>
+        <td width="40%"><label class="form-control-static"> What is the Application code & title:</label></td>
+        <td><input type="text" class="form-control" required="required" /></td>
     </tr>
 
     <tr>
         <td><label class="form-control-static"> Which Busines unit does the application belong to:</label></td>
-        <td><input type="radio" name="AppBelongs" id="appUnit1" />CAO<br />
-            <input type="radio" name="AppBelongs" id="appUnit2" />CFO<br />
-            <input type="radio" name="AppBelongs" id="appUnit3" />CMB<br />
-            <input type="radio" name="AppBelongs" id="appUnit4" />VZW</td>
+        <td>
+            <input type="radio"  required="required" name="AppBelongs" id="appUnit1" />&nbsp;CAO<br />
+            <input type="radio"  required="required" name="AppBelongs" id="appUnit2" />&nbsp;CFO<br />
+            <input type="radio"  required="required" name="AppBelongs" id="appUnit3" />&nbsp;CMB<br />
+            <input type="radio"  required="required" name="AppBelongs" id="appUnit4" />&nbsp;VZW
+        </td>
     </tr>
 
     <tr>
         <td><label class="form-control-static">Criticality of the Application:</label></td>
         <td>
-            <input type="radio" name="Criticality" id="appCriticality1" />MC<br />
-            <input type="radio" name="Criticality" id="appCriticality2" />BC<br />
-            <input type="radio" name="Criticality" id="appCriticality3" />SC<br />
-            <input type="radio" name="Criticality" id="appCriticality4" />Non-crit
+            <input type="radio" required="required" name="Criticality" id="appCriticality1" />&nbsp;MC<br />
+            <input type="radio" required="required" name="Criticality" id="appCriticality2" />&nbsp;BC<br />
+            <input type="radio" required="required" name="Criticality" id="appCriticality3" />&nbsp;SC<br />
+            <input type="radio" required="required" name="Criticality" id="appCriticality4" />&nbsp;Non-crit
         </td>
     </tr>
     <tr>
         <td><label class="form-control-static">Release Frequency ?</label></td>
         <td>
-            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency1" />Daily<br />
-            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency2" />Weekly<br />
-            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency3" />Monthly<br />
+            <input type="radio" value="Daily" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency1" />&nbsp;Daily<br />
+            <span id="Daily" style="display:none">
+                How many releases daily ? <input type="text" class="form-control" />
+            </span>
+            <input type="radio" value="Weekly" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency2" />&nbsp;Weekly<br />
+            <span id="Weekly" style="display:none">
+                How many releases Weekly ? <input type="text" class="form-control" />
+            </span>
+            <input type="radio" value="Monthly" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency3" />&nbsp;Monthly<br />
+            <span id="Monthly" style="display:none">
+                How many releases Monthly ? <input type="text" class="form-control" />
+            </span>
+            <input type="radio" value="UnScheduled" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency4" />&nbsp;Un Scheduled<br />
         </td>
     </tr>
+
     <tr>
-        <td><label class="form-control-static"> What is the Application code & title:</label></td>
-        <td><input type="text" class="form-control" /></td>
+        <td><label class="form-control-static">List of Containers supported:</label></td>
+        <td>
+            <input onclick="$('#CodeManagementspan').toggle();" type="checkbox" value="CodeManagement" name="CodeManagement" id="CodeManagement" />&nbsp;Code Management<br />
+            <span id="CodeManagementspan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="GIT" name="CodeMgmt" id="codeMgmt1" />&nbsp;GIT</li>
+                    <li><input type="radio" value="STASH" name="CodeMgmt" id="codeMgmt2" />&nbsp;STASH</li>
+                    <li><input onclick="$('#CodeMgmtOthers').toggle();" type="radio" value="Others" name="CodeMgmt" id="codeMgmt3" />&nbsp;Others</li>
+                    <span id="CodeMgmtOthers" style="display:none">
+                        Name other Code Management tools. <input type="text" class="form-control" />
+                    </span>
+                </ol>
+            </span>
+
+            <input onclick="$('#IssueTrackingSpan').toggle();" type="checkbox" value="IssueTracking" name="IssueTracking" id="IssueTracking" />&nbsp;Issue Tracking tools.<br />
+            <span id="IssueTrackingSpan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="JIRA" name="IssueTracking" id="IssueTracking1" />&nbsp;JIRA</li>
+                    <li><input type="radio" value="STASH" name="IssueTracking" id="IssueTracking2" />&nbsp;STASH</li>
+                    <li><input onclick="$('#IssueTrackingOthers').toggle();" type="radio" value="IssueTrackingOthers" name="IssueTracking" id="IssueTracking3" />&nbsp;Others</li>
+                    <span id="IssueTrackingOthers" style="display:none">
+                        Name other Issue Tracking tools. <input type="text" class="form-control" />
+                    </span>
+                </ol>
+            </span>
+
+            <input onclick="$('#TestAutomationSpan').toggle();" type="checkbox" value="TestAutomation" name="TestAutomation" id="TestAutomation" />&nbsp;Test Automation tools.<br />
+            <span id="TestAutomationSpan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="Selenium" name="TestAutomation" id="TestAutomation1" />&nbsp;Selenium</li>
+                    <li><input type="radio" value="QTP" name="TestAutomation" id="TestAutomation2" />&nbsp;QTP</li>
+                    <li><input onclick="$('#TestAutomationOthers').toggle();" type="radio" value="TestAutomationOthers" name="TestAutomation" id="TestAutomation3" />&nbsp;Others</li>
+                    <span id="TestAutomationOthers" style="display:none">
+                        Name other Test Automation tools. <input type="text" class="form-control" />
+                    </span>
+                </ol>
+            </span>
+
+            <input onclick="$('#ContinousIntegrationSpan').toggle();" type="checkbox" value="ContinousIntegration" name="ContinousIntegration" id="ContinousIntegration" />Continous Integration tools.<br />
+            <span id="ContinousIntegrationSpan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="Jenkins" name="ContinousIntegration" id="ContinousIntegration1" />&nbsp;Jenkins</li>
+                    <li><input onclick="$('#ContinousIntegrationOthers').toggle();" type="radio" value="ContinousIntegrationOthers" name="ContinousIntegration" id="ContinousIntegration2" />&nbsp;Others</li>
+                    <span id="ContinousIntegrationOthers" style="display:none">
+                        Name other Test Automation tools. <input type="text" class="form-control" />
+                    </span>
+                </ol>
+            </span>
+
+        </td>
     </tr>
 
     <tr>
-        <td><label class="form-control-static"> What is the Application code & title:</label></td>
-        <td><input type="text" class="form-control" /></td>
+        <td><label class="form-control-static"> List of Application Components supported</label></td>
+        <td>
+            <input onclick="$('#AppComponentsSupportedSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="MonitoringAppComponentsSupported" id="AppComponentsSupported" />&nbsp;Monitoring<br />
+            <span id="AppComponentsSupportedSpan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="Monitoring" name="AppComponentsSupported" id="AppComponentsSupported1" />&nbsp;Monitoring</li>
+                    <li><input type="radio" value="Warning" name="AppComponentsSupported" id="AppComponentsSupported2" />&nbsp;Error in File</li>
+                    <li><input type="radio" value="Error" name="AppComponentsSupported" id="AppComponentsSupported3" />&nbsp;DB Connection</li>
+                </ol>
+            </span>
+            <input onclick="$('#MemomryMonitoringSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="MonitoringAppComponentsSupported" id="AppComponentsSupported" />&nbsp;Memomry Monitoring<br />
+            <span id="MemomryMonitoringSpan" style="display:none">
+                <ol>
+                    <li><input type="radio" value="MemoryOverUtilization" name="MemoryMonitoring" id="MemoryMonitoring1" />&nbsp;Memeory over utilization</li>
+                    <li><input type="radio" value="CPUUtillization" name="MemoryMonitoring" id="MemoryMonitoring2" />&nbsp;CPU over utilization</li>
+                    <li><input onclick="$('#MemomryMonitoringOthers').toggle();" type="radio" value="MemoryMonitoringOthers" name="MemoryMonitoring" id="MemoryMonitoring3" />&nbsp;others</li>
+                    <span id="MemomryMonitoringOthers" style="display:none">
+                        Name other Memomry Monitoring functions <input type="text" class="form-control" />
+                    </span>
+                </ol>
+            </span>
+        </td>
     </tr>
-
 </table>
-
-4) Release frequency:
- i) Daily
-  a) How many releases daily: Text response
- ii) Weekly
-  b) How many releases weekly: Text response
- iii) Monthly
-  c) How many releases monthly: Text response
-5) List of Containers supported: (check boxes)
- a) Code Management
-  i) GIT
-  ii) STASH
-  iii) others
-   > Text Response
- b) Issue Tracking
-  i) JIRA
-  ii) IPM
-  iii) others
-   > Text Response
- c) Test Automation
-  i) Selenium
-  ii) QTP
-  iii) others
-   > Text Response
-   d) Continouse Integration
-  i) Jenkins
-  ii) others
-   > Text Response
-6) List of Application componenets supported:
- a) Monitoring
-  i) Warning in File
-  ii) Error in File
-  iii) DB connection
- b) Memomry Monitoring
-  i) Memory over utilization
-  ii) CPU over utilization
-  iii) others
-   > Text response
-
+<div class="well-lg">
+    <input type="submit" value="Submit My Survey" class="btn btn-primary btn-lg" />
+</div>
+<script type="text/javascript">
+    function releaseFreqAnswer(radio) {
+        switch (radio.value) {
+            case "Daily":
+                document.getElementById("Daily").style.display = "inline";
+                document.getElementById("Weekly").style.display = "none";
+                document.getElementById("Monthly").style.display = "none";
+                break;
+            case "Weekly":
+                document.getElementById("Daily").style.display = "none";
+                document.getElementById("Weekly").style.display = "inline";
+                document.getElementById("Monthly").style.display = "none";
+                break;
+            case "Monthly":
+                document.getElementById("Daily").style.display = "none";
+                document.getElementById("Weekly").style.display = "none";
+                document.getElementById("Monthly").style.display = "inline";
+                break;
+        }
+    }
+</script>
+}
