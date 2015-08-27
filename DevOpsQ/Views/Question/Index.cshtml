@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "DevOps - Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DevOps Entry Criteria:</h2><br />
+
+<table class="table">
+
+    <tr>
+        <td><label class="form-control-static"> What is the Application code & title:</label></td>
+        <td><input type="text" class="form-control" /></td>
+    </tr>
+
+    <tr>
+        <td><label class="form-control-static"> Which Busines unit does the application belong to:</label></td>
+        <td><input type="radio" name="AppBelongs" id="appUnit1" />CAO<br />
+            <input type="radio" name="AppBelongs" id="appUnit2" />CFO<br />
+            <input type="radio" name="AppBelongs" id="appUnit3" />CMB<br />
+            <input type="radio" name="AppBelongs" id="appUnit4" />VZW</td>
+    </tr>
+
+    <tr>
+        <td><label class="form-control-static">Criticality of the Application:</label></td>
+        <td>
+            <input type="radio" name="Criticality" id="appCriticality1" />MC<br />
+            <input type="radio" name="Criticality" id="appCriticality2" />BC<br />
+            <input type="radio" name="Criticality" id="appCriticality3" />SC<br />
+            <input type="radio" name="Criticality" id="appCriticality4" />Non-crit
+        </td>
+    </tr>
+    <tr>
+        <td><label class="form-control-static">Release Frequency ?</label></td>
+        <td>
+            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency1" />Daily<br />
+            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency2" />Weekly<br />
+            <input type="radio" name="ReleaseFrequency" id="ReleaseFrequency3" />Monthly<br />
+        </td>
+    </tr>
+    <tr>
+        <td><label class="form-control-static"> What is the Application code & title:</label></td>
+        <td><input type="text" class="form-control" /></td>
+    </tr>
+
+    <tr>
+        <td><label class="form-control-static"> What is the Application code & title:</label></td>
+        <td><input type="text" class="form-control" /></td>
+    </tr>
+
+</table>
+
+4) Release frequency:
+ i) Daily
+  a) How many releases daily: Text response
+ ii) Weekly
+  b) How many releases weekly: Text response
+ iii) Monthly
+  c) How many releases monthly: Text response
+5) List of Containers supported: (check boxes)
+ a) Code Management
+  i) GIT
+  ii) STASH
+  iii) others
+   > Text Response
+ b) Issue Tracking
+  i) JIRA
+  ii) IPM
+  iii) others
+   > Text Response
+ c) Test Automation
+  i) Selenium
+  ii) QTP
+  iii) others
+   > Text Response
+   d) Continouse Integration
+  i) Jenkins
+  ii) others
+   > Text Response
+6) List of Application componenets supported:
+ a) Monitoring
+  i) Warning in File
+  ii) Error in File
+  iii) DB connection
+ b) Memomry Monitoring
+  i) Memory over utilization
+  ii) CPU over utilization
+  iii) others
+   > Text response
+
