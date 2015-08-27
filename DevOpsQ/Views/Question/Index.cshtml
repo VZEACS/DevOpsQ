@@ -17,49 +17,49 @@
     <tr>
         <td><label class="form-control-static"> Which Busines unit does the application belong to:</label></td>
         <td>
-            <input type="radio"  required="required" name="AppBelongs" id="appUnit1" />&nbsp;CAO<br />
-            <input type="radio"  required="required" name="AppBelongs" id="appUnit2" />&nbsp;CFO<br />
-            <input type="radio"  required="required" name="AppBelongs" id="appUnit3" />&nbsp;CMB<br />
-            <input type="radio"  required="required" name="AppBelongs" id="appUnit4" />&nbsp;VZW
+            <input type="radio" required="required" name="AppBelongs" id="appUnit1" />&nbsp;CAO<br />
+            <input type="radio" required="required" name="AppBelongs" id="appUnit2" />&nbsp;CFO<br />
+            <input type="radio" required="required" name="AppBelongs" id="appUnit3" />&nbsp;CMB<br />
+            <input type="radio" required="required" name="AppBelongs" id="appUnit4" />&nbsp;VZW
         </td>
     </tr>
 
     <tr>
         <td><label class="form-control-static">Criticality of the Application:</label></td>
         <td>
-            <input type="radio" required="required" name="Criticality" id="appCriticality1" />&nbsp;MC<br />
-            <input type="radio" required="required" name="Criticality" id="appCriticality2" />&nbsp;BC<br />
-            <input type="radio" required="required" name="Criticality" id="appCriticality3" />&nbsp;SC<br />
-            <input type="radio" required="required" name="Criticality" id="appCriticality4" />&nbsp;Non-crit
+            <input type="radio" score="5" required="required" name="Criticality" id="appCriticality1" />&nbsp;MC<br />
+            <input type="radio" score="3" required="required" name="Criticality" id="appCriticality2" />&nbsp;BC<br />
+            <input type="radio" score="2" required="required" name="Criticality" id="appCriticality3" />&nbsp;SC<br />
+            <input type="radio" score="1" required="required" name="Criticality" id="appCriticality4" />&nbsp;Non-crit
         </td>
     </tr>
     <tr>
         <td><label class="form-control-static">Release Frequency ?</label></td>
         <td>
-            <input type="radio" value="Daily" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency1" />&nbsp;Daily<br />
+            <input type="radio" value="Daily" onclick="releaseFreqAnswer(this);" score="5" name="ReleaseFrequency" id="ReleaseFrequency1" />&nbsp;Daily<br />
             <span id="Daily" style="display:none">
-                How many releases daily ? <input type="text" class="form-control" />
+                How many releases daily ? <input type="text" min="1" max="100"  class="form-control" />
             </span>
-            <input type="radio" value="Weekly" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency2" />&nbsp;Weekly<br />
+            <input type="radio" value="Weekly" onclick="releaseFreqAnswer(this);" score="4" name="ReleaseFrequency" id="ReleaseFrequency2" />&nbsp;Weekly<br />
             <span id="Weekly" style="display:none">
-                How many releases Weekly ? <input type="text" class="form-control" />
+                How many releases Weekly ? <input type="number" min="1" max="100" class="form-control" />
             </span>
-            <input type="radio" value="Monthly" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency3" />&nbsp;Monthly<br />
+            <input type="radio" value="Monthly" onclick="releaseFreqAnswer(this);" score="2" name="ReleaseFrequency" id="ReleaseFrequency3" />&nbsp;Monthly<br />
             <span id="Monthly" style="display:none">
-                How many releases Monthly ? <input type="text" class="form-control" />
+                How many releases Monthly ? <input type="text" min="1" max="100"  class="form-control" />
             </span>
-            <input type="radio" value="UnScheduled" onclick="releaseFreqAnswer(this);" name="ReleaseFrequency" id="ReleaseFrequency4" />&nbsp;Un Scheduled<br />
+            <input type="radio" value="UnScheduled" onclick="releaseFreqAnswer(this);" score="1" name="ReleaseFrequency" id="ReleaseFrequency4" />&nbsp;Un Scheduled<br />
         </td>
     </tr>
 
     <tr>
         <td><label class="form-control-static">List of Containers supported:</label></td>
         <td>
-            <input onclick="$('#CodeManagementspan').toggle();" type="checkbox" value="CodeManagement" name="CodeManagement" id="CodeManagement" />&nbsp;Code Management<br />
+            <input onclick="$('#CodeManagementspan').toggle(); $('input[name=CodeMgmt]').checked(false);" type="checkbox" value="CodeManagement" name="CodeManagement" id="CodeManagement" />&nbsp;Code Management<br />
             <span id="CodeManagementspan" style="display:none">
                 <ol>
-                    <li><input type="radio" value="GIT" name="CodeMgmt" id="codeMgmt1" />&nbsp;GIT</li>
-                    <li><input type="radio" value="STASH" name="CodeMgmt" id="codeMgmt2" />&nbsp;STASH</li>
+                    <li><input type="radio" score="5" value="GIT" name="CodeMgmt" id="codeMgmt1" />&nbsp;GIT</li>
+                    <li><input type="radio" score="5" value="STASH" name="CodeMgmt" id="codeMgmt2" />&nbsp;STASH</li>
                     <li><input onclick="$('#CodeMgmtOthers').toggle();" type="radio" value="Others" name="CodeMgmt" id="codeMgmt3" />&nbsp;Others</li>
                     <span id="CodeMgmtOthers" style="display:none">
                         Name other Code Management tools. <input type="text" class="form-control" />
