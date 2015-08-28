@@ -3,7 +3,30 @@
     ViewBag.Title = "DevOps - Question";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var CriticalityScores = $("input[name='Criticality']:checked").attr("score");
 
+            var ReleaseFrequencyScores = $("input[name='ReleaseFrequency']:checked").attr("score");
+
+            var CodeMgmtScores = $("input[name='CodeMgmt']:checked").attr("score");
+
+            var IssueTrackingScores = $("input[name='IssueTracking']:checked").attr("score");
+
+            var TestAutomationScores = $("input[name='TestAutomation']:checked").attr("score");
+            
+            var ContinousIntegrationScores = $("input[name='ContinousIntegration']:checked").attr("score");
+
+            var AppComponentsSupportedScores = $("input[name='AppComponentsSupported']:checked").attr("score");
+
+            var MemoryMonitoringScores = $("input[name='MemoryMonitoring']:checked").attr("score");
+
+            alert(CriticalityScores + ReleaseFrequencyScores + CodeMgmtScores + IssueTrackingScores + TestAutomationScores + ContinousIntegrationScores + AppComponentsSupportedScores + MemoryMonitoringScores);
+
+        });
+    });
+</script>
 <h2>DevOps Entry Criteria:</h2><br />
 @using (Html.BeginForm())
 {
@@ -55,33 +78,33 @@
     <tr>
         <td><label class="form-control-static">List of Containers supported:</label></td>
         <td>
-            <input onclick="$('#CodeManagementspan').toggle(); $('input[name=CodeMgmt]').checked(false);" type="checkbox" value="CodeManagement" name="CodeManagement" id="CodeManagement" />&nbsp;Code Management<br />
+            <input onclick="$('#CodeManagementspan').toggle();" type="checkbox" value="CodeMgmtMain" name="CodeManagement" id="CodeManagement" />&nbsp;Code Management<br />
             <span id="CodeManagementspan" style="display:none">
                 <ol>
                     <li><input type="radio" value="CodeMgmtNone" score="0" name="CodeMgmt" id="codeMgmt4" />&nbsp;None</li>
                     <li><input type="radio" score="5" value="GIT" name="CodeMgmt" id="codeMgmt1" />&nbsp;GIT</li>
                     <li><input type="radio" score="5" value="STASH" name="CodeMgmt" id="codeMgmt2" />&nbsp;STASH</li>
-                    <li><input onclick="$('#CodeMgmtOthers').toggle();" type="radio" value="Others" name="CodeMgmt" id="codeMgmt3" />&nbsp;Others</li>
+                    <li><input onclick="$('#CodeMgmtOthers').toggle();" score="5" type="radio" value="Others" name="CodeMgmt" id="codeMgmt3" />&nbsp;Others</li>
                     <span id="CodeMgmtOthers" style="display:none">
                         Name other Code Management tools. <input score="5" type="text" class="form-control" />
                     </span>
                 </ol>
             </span>
 
-            <input onclick="$('#IssueTrackingSpan').toggle();" type="checkbox" value="IssueTracking" name="IssueTracking" id="IssueTracking" />&nbsp;Issue Tracking tools.<br />
+            <input onclick="$('#IssueTrackingSpan').toggle();" type="checkbox" value="IssueTracking" name="IssueTrackingMain" id="IssueTracking" />&nbsp;Issue Tracking tools.<br />
             <span id="IssueTrackingSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="IssueTrackingNone" score="0" name="IssueTracking" id="IssueTracking4" />&nbsp;None</li>
                     <li><input type="radio" value="JIRA" score="5" name="IssueTracking" id="IssueTracking1" />&nbsp;JIRA</li>
                     <li><input type="radio" value="STASH" score="5" name="IssueTracking" id="IssueTracking2" />&nbsp;STASH</li>
-                    <li><input onclick="$('#IssueTrackingOthers').toggle();"score="5" type="radio" value="IssueTrackingOthers" name="IssueTracking" id="IssueTracking3" />&nbsp;Others</li>
+                    <li><input onclick="$('#IssueTrackingOthers').toggle();" score="5" type="radio" value="IssueTrackingOthers" name="IssueTracking" id="IssueTracking3" />&nbsp;Others</li>
                     <span id="IssueTrackingOthers" style="display:none">
                         Name other Issue Tracking tools. <input type="text" class="form-control" />
                     </span>
                 </ol>
             </span>
 
-            <input onclick="$('#TestAutomationSpan').toggle();" type="checkbox" value="TestAutomation" name="TestAutomation" id="TestAutomation" />&nbsp;Test Automation tools.<br />
+            <input onclick="$('#TestAutomationSpan').toggle();" type="checkbox" value="TestAutomation" name="TestAutomationMain" id="TestAutomation" />&nbsp;Test Automation tools.<br />
             <span id="TestAutomationSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="TestAutomationNone" score="0" name="TestAutomation" id="TestAutomation4" />&nbsp;None</li>
@@ -94,12 +117,12 @@
                 </ol>
             </span>
 
-            <input onclick="$('#ContinousIntegrationSpan').toggle();" type="checkbox" value="ContinousIntegration" name="ContinousIntegration" id="ContinousIntegration" />Continous Integration tools.<br />
+            <input onclick="$('#ContinousIntegrationSpan').toggle();" type="checkbox" value="ContinousIntegration" name="ContinousIntegrationMain" id="ContinousIntegration" />Continous Integration tools.<br />
             <span id="ContinousIntegrationSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="ContinousIntegrationNone" score="0" name="ContinousIntegration" id="ContinousIntegration3" />&nbsp;None</li>
-                    <li><input type="radio" value="Jenkins" name="ContinousIntegration" id="ContinousIntegration1" />&nbsp;Jenkins</li>
-                    <li><input onclick="$('#ContinousIntegrationOthers').toggle();" type="radio" value="ContinousIntegrationOthers" name="ContinousIntegration" id="ContinousIntegration2" />&nbsp;Others</li>
+                    <li><input type="radio" score="5" value="Jenkins" name="ContinousIntegration" id="ContinousIntegration1" />&nbsp;Jenkins</li>
+                    <li><input onclick="$('#ContinousIntegrationOthers').toggle();" score="5" type="radio" value="ContinousIntegrationOthers" name="ContinousIntegration" id="ContinousIntegration2" />&nbsp;Others</li>
                     <span id="ContinousIntegrationOthers" style="display:none">
                         Name other Test Automation tools. <input type="text" class="form-control" />
                     </span>
@@ -112,22 +135,22 @@
     <tr>
         <td><label class="form-control-static"> List of Application Components supported</label></td>
         <td>
-            <input onclick="$('#AppComponentsSupportedSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="MonitoringAppComponentsSupported" id="AppComponentsSupported" />&nbsp;Monitoring<br />
+            <input onclick="$('#AppComponentsSupportedSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="AppComponentsSupportedMain" id="AppComponentsSupported" />&nbsp;Monitoring<br />
             <span id="AppComponentsSupportedSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="AppComponentsSupportedNone" score="0" name="AppComponentsSupported" id="AppComponentsSupported4" />&nbsp;None</li>
-                    <li><input type="radio" value="Monitoring" name="AppComponentsSupported" id="AppComponentsSupported1" />&nbsp;Monitoring</li>
-                    <li><input type="radio" value="Warning" name="AppComponentsSupported" id="AppComponentsSupported2" />&nbsp;Error in File</li>
-                    <li><input type="radio" value="Error" name="AppComponentsSupported" id="AppComponentsSupported3" />&nbsp;DB Connection</li>
+                    <li><input type="radio" value="Monitoring" score="5" name="AppComponentsSupported" id="AppComponentsSupported1" />&nbsp;Monitoring</li>
+                    <li><input type="radio" value="Warning" score="3" name="AppComponentsSupported" id="AppComponentsSupported2" />&nbsp;Error in File</li>
+                    <li><input type="radio" value="Error" score="2" name="AppComponentsSupported" id="AppComponentsSupported3" />&nbsp;DB Connection</li>
                 </ol>
             </span>
-            <input onclick="$('#MemomryMonitoringSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="MonitoringAppComponentsSupported" id="AppComponentsSupported" />&nbsp;Memomry Monitoring<br />
+            <input onclick="$('#MemomryMonitoringSpan').toggle();" type="checkbox" value="MonitoringComponentsSupported" name="MemoryMonitoringMain" id="AppComponentsSupported" />&nbsp;Memomry Monitoring<br />
             <span id="MemomryMonitoringSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="MemoryMonitoringNone" score="0" name="MemoryMonitoring" id="MemoryMonitoring4" />&nbsp;None</li>
-                    <li><input type="radio" value="MemoryOverUtilization" name="MemoryMonitoring" id="MemoryMonitoring1" />&nbsp;Memeory over utilization</li>
-                    <li><input type="radio" value="CPUUtillization" name="MemoryMonitoring" id="MemoryMonitoring2" />&nbsp;CPU over utilization</li>
-                    <li><input onclick="$('#MemomryMonitoringOthers').toggle();" type="radio" value="MemoryMonitoringOthers" name="MemoryMonitoring" id="MemoryMonitoring3" />&nbsp;others</li>
+                    <li><input type="radio" value="MemoryOverUtilization" score="5" name="MemoryMonitoring" id="MemoryMonitoring1" />&nbsp;Memeory over utilization</li>
+                    <li><input type="radio" value="CPUUtillization" score="3" name="MemoryMonitoring" id="MemoryMonitoring2" />&nbsp;CPU over utilization</li>
+                    <li><input onclick="$('#MemomryMonitoringOthers').toggle();" score="2" type="radio" value="MemoryMonitoringOthers" name="MemoryMonitoring" id="MemoryMonitoring3" />&nbsp;others</li>
                     <span id="MemomryMonitoringOthers" style="display:none">
                         Name other Memomry Monitoring functions <input type="text" class="form-control" />
                     </span>
@@ -137,7 +160,7 @@
     </tr>
 </table>
 <div class="well-lg">
-    <input id="btnSubmit" type="submit" value="Submit My Survey" class="btn btn-primary btn-lg" />
+    <input id="btnSubmit" type="button" value="Submit My Survey" class="btn btn-primary btn-lg" />
 </div>
 <script type="text/javascript">
     function releaseFreqAnswer(radio) {
@@ -160,12 +183,6 @@
         }
     }
 
-    $(document).ready(function () {
-        $("#btnSubmit").click(function () {
-            var totalScores = $("input[name='ReleaseFrequency']").attr("score");
-            alert(totalScores);
-
-        });
-    });
+    
 </script>
 }
