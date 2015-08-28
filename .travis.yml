@@ -6,3 +6,4 @@
    api: https://api.beta.ironfoundry.me
    organization: VDSI EACS
    space: development
+   sudo:required
