@@ -1,9 +1,0 @@
- deploy:
-   edge: true
-   provider: cloudfoundry
-   username: arun.sukumar@verizon.com
-   password: y]cb73jv|cda
-   api: https://api.beta.ironfoundry.me
-   organization: VDSI EACS
-   space: development
-   sudo:required
