@@ -1,8 +1,9 @@
 deploy:
 edge: true
-provider: ironfoundry
-username: arun.sukumar@verizon.com
-password: y]cb73jv|cda
+provider: cloudfoundry
+username: gnanaskandan.x.kesavabharathi@verizon.com
+password: m{i{3!3r>bL+
 api: api.beta.ironfoundry.me
-organization: VDSI EACS
+organization: VDSI EACS Devops
 space: development
+
