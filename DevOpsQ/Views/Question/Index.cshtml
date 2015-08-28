@@ -6,31 +6,63 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnSubmit").click(function () {
-            var CriticalityScores = $("input[name='Criticality']:checked").attr("score");
+            var CriticalityScores = parseInt($("input[name='Criticality']:checked").attr("score") == undefined ? 0 : $("input[name='Criticality']:checked").attr("score"));
 
-            var ReleaseFrequencyScores = $("input[name='ReleaseFrequency']:checked").attr("score");
+            var ReleaseFrequencyScores = parseInt($("input[name='ReleaseFrequency']:checked").attr("score") == undefined ? 0 : $("input[name='ReleaseFrequency']:checked").attr("score"));
 
-            var CodeMgmtScores = $("input[name='CodeMgmt']:checked").attr("score");
+            var CodeMgmtScores = parseInt($("input[name='CodeMgmt']:checked").attr("score") == undefined ? 0 : $("input[name='CodeMgmt']:checked").attr("score"));
 
-            var IssueTrackingScores = $("input[name='IssueTracking']:checked").attr("score");
+            var IssueTrackingScores = parseInt($("input[name='IssueTracking']:checked").attr("score") == undefined ? 0 : $("input[name='IssueTracking']:checked").attr("score"));
 
-            var TestAutomationScores = $("input[name='TestAutomation']:checked").attr("score");
-            
-            var ContinousIntegrationScores = $("input[name='ContinousIntegration']:checked").attr("score");
+            var TestAutomationScores = parseInt($("input[name='TestAutomation']:checked").attr("score") == undefined ? 0 : $("input[name='TestAutomation']:checked").attr("score"));
 
-            var AppComponentsSupportedScores = $("input[name='AppComponentsSupported']:checked").attr("score");
+            var ContinousIntegrationScores = parseInt($("input[name='ContinousIntegration']:checked").attr("score") == undefined ? 0 : $("input[name='ContinousIntegration']:checked").attr("score"));
 
-            var MemoryMonitoringScores = $("input[name='MemoryMonitoring']:checked").attr("score");
+            var AppComponentsSupportedScores = parseInt($("input[name='AppComponentsSupported']:checked").attr("score") == undefined ? 0 : $("input[name='AppComponentsSupported']:checked").attr("score"));
 
-            alert(CriticalityScores + ReleaseFrequencyScores + CodeMgmtScores + IssueTrackingScores + TestAutomationScores + ContinousIntegrationScores + AppComponentsSupportedScores + MemoryMonitoringScores);
+            var MemoryMonitoringScores = parseInt($("input[name='MemoryMonitoring']:checked").attr("score") == undefined ? 0 : $("input[name='MemoryMonitoring']:checked").attr("score"));
 
+            var totalScore = CriticalityScores + ReleaseFrequencyScores + CodeMgmtScores + IssueTrackingScores + TestAutomationScores + ContinousIntegrationScores + AppComponentsSupportedScores + MemoryMonitoringScores;
+
+            if (totalScore >= 20 && totalScore < 25) {
+                $("#tblQuestions").toggle();
+                $("#pnlContainer").toggle();
+                $("#pnlInner").html("You are at Medium Risk - You have to improve on Automation / Releases and Monitoring to move on DevOps");
+                //alert("You are at Medium Risk - You have to improve on Automation / Releases and Monitoring to move on DevOps");
+            }
+
+            if (totalScore >= 25) {
+                $("#tblQuestions").toggle();
+                $("#pnlContainer").toggle();
+                $("#pnlInner").html("You are ready to move on DevOps");
+                //Can Go for Devops
+            }
+
+            if (totalScore < 20)
+            {
+                $("#tblQuestions").toggle();
+                $("#pnlContainer").toggle();
+                $("#pnlInner").html("You are at High Risk to move on DevOps. You have to improvein Release Frequency / Code Management / Tracking / Test Automation / Continous Integration / Memory Monitoring");
+                //Cannot go for Devops
+            }
         });
     });
 </script>
 <h2>DevOps Entry Criteria:</h2><br />
 @using (Html.BeginForm())
 {
-<table class="table">
+    <div  id="pnlContainer" class="alert alert-warning" style="display:none" role="alert">
+        <div id="pnlInner">
+            Basic panel example
+        </div>
+        <div class="form-group"><br /><br />
+            <a href="../Home" class="btn btn-success">Home</a>
+        </div>
+    </div>
+
+    
+
+<table id="tblQuestions" class="table">
 
     <tr>
         <td width="40%"><label class="form-control-static"> What is the Application code & title:</label></td>
@@ -108,9 +140,9 @@
             <span id="TestAutomationSpan" style="display:none">
                 <ol>
                     <li><input type="radio" value="TestAutomationNone" score="0" name="TestAutomation" id="TestAutomation4" />&nbsp;None</li>
-                    <li><input type="radio" value="Selenium" name="TestAutomation" id="TestAutomation1" />&nbsp;Selenium</li>
-                    <li><input type="radio" value="QTP" name="TestAutomation" id="TestAutomation2" />&nbsp;QTP</li>
-                    <li><input onclick="$('#TestAutomationOthers').toggle();" type="radio" value="TestAutomationOthers" name="TestAutomation" id="TestAutomation3" />&nbsp;Others</li>
+                    <li><input type="radio" value="Selenium" score="5"  name="TestAutomation" id="TestAutomation1" />&nbsp;Selenium</li>
+                    <li><input type="radio" value="QTP" score="5" name="TestAutomation" id="TestAutomation2" />&nbsp;QTP</li>
+                    <li><input onclick="$('#TestAutomationOthers').toggle();" type="radio" score="5" value="TestAutomationOthers" name="TestAutomation" id="TestAutomation3" />&nbsp;Others</li>
                     <span id="TestAutomationOthers" style="display:none">
                         Name other Test Automation tools. <input type="text" class="form-control" />
                     </span>
@@ -158,9 +190,17 @@
             </span>
         </td>
     </tr>
+    <tr>
+        <td>
+
+        </td>
+        <td>
+            <input id="btnSubmit" type="button" value="Submit My Survey" class="btn btn-primary btn-lg" />
+
+        </td>
+    </tr>
 </table>
 <div class="well-lg">
-    <input id="btnSubmit" type="button" value="Submit My Survey" class="btn btn-primary btn-lg" />
 </div>
 <script type="text/javascript">
     function releaseFreqAnswer(radio) {
